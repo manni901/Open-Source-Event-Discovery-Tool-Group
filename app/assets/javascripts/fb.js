@@ -89,7 +89,7 @@
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
 
-  FB.api('/me?fields=id,first_name,last_name,gender,location,hometown,email', function(response) {
+  FB.api('/me?fields=id,first_name,last_name,gender,location', function(response) {
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
       var location =response.location;
@@ -121,7 +121,7 @@
        {
            access_token: '105719696577356|79c6db8c9fb0bc8c93c9b6b58ffb7ead',
            template: 'You have ' + numNotifications + ' events waiting to be reviewed',
-           href: 'google.com'        
+           href: ''        
        }, 
        function(response)
        {
