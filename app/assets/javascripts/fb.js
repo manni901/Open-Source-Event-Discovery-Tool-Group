@@ -20,7 +20,6 @@
         'into Facebook.';
     }
   }
-
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -29,7 +28,6 @@
       statusChangeCallback(response);
     });
   }
-
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '105719696577356',
@@ -38,7 +36,6 @@
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
   });
-
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
@@ -50,13 +47,10 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
-
   };
-
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -65,16 +59,29 @@
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-
+  var pageLikes = {
+    pages: []
+  };
+  function getLikes(response){
+   if (response.paging.next != "undefined"){
+       FB.api(response.paging.next, getLikes);
+       for(var i in response.data) {    
+        var item = response.data[i];   
+        pageLikes.pages.push({ 
+          "name" : response.data[i].name,
+        });
+      }  
+    }
+    console.log(pageLikes.pages);
+  }
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      console.log(response);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '! Here are some local events around you, based on your interests. Enjoy!';
+        'Thanks for logging in, ' + response.name + '!';
 
       var appElement = document.querySelector('[ng-app=eventNews]');
       var $scope = angular.element(appElement).scope();
@@ -82,4 +89,18 @@
           $scope.loggedIn = true;
       });  
     });
+    /* make the API call */
+    FB.api("me/likes?limit=100", getLikes);
+  // FB.api(
+  //   "/me/likes?limit=100",
+  //   function (response) {
+  //     if (response && !response.error) {
+  //       /* handle the result */
+  //     }
+  //     console.log(response);
+  //   });
+    // /* make the API call */
+    // FB.api('/me', {fields: 'gender, first_name, last_name, email, likes'}, function(response) {
+    // console.log(response.likes[0]);
+    // });
   }
