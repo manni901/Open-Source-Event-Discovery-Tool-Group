@@ -1,11 +1,9 @@
-//  Below we include the Login Button social plugin. This button uses
-//  the JavaScript SDK to present a graphical Login button that triggers
-//  the FB.login() function when clicked.
+
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-<div id="status">
 
+<div id="status">
 </div>
 
 <h3>Events</h3>
@@ -14,11 +12,11 @@
 	    <div ng-repeat="item in items">
 	        <div class="clearfix" ng-if="$index % 3 == 0"></div>
 	        <div class="col-sm-4">
-	        	<div class="panel panel-default">
-		        	<div class="panel-title" style="background-color: grey;color:white;padding:2px 6px">{{item.category}}</div>
+	        	<div class="panel panel-primary" style="border-radius:4px;border-width:4px">
+		        	<div class="panel-title" style="background-color: #051838;color:white;padding:2px 6px">{{item.category}}</div>
 		            <div class="panel-body">
 				    	<p>Name: {{item.name}}</p>
-				    	<p><a href="{{item.url}}">Link</a></p>
+				    	<p><a href="{{item.url}}" target="_blank">Link</a></p>
 				    	<p>Venue: {{item.venue.name}}</p>
 				    	<p>Date: {{item.start.utc}}</p>
 			    	</div>
