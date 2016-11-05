@@ -89,8 +89,8 @@
           }, function(locationResponse) {
               locResponse = locationResponse;
               loggedIn = true;
-              defaultLatitude = locResponse.latitude;
-              defaultLongitude = locResponse.longitude;
+              defaultLat = locResponse.latitude;
+              defaultLon = locResponse.longitude;
               displayMarkers();
           });
 
