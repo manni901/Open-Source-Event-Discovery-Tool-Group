@@ -87,20 +87,18 @@
       FB.api('/' + location.id, {
               fields: 'location'
           }, function(locationResponse) {
-              locResponse = locationResponse;
+              var appElement = document.querySelector('[ng-app=eventNews]');
+              var $scope = angular.element(appElement).scope();
+              $scope.$apply(function() {
+                  $scope.loggedIn = true;
+                  defaultLatitude = locationResponse.latitude;
+                  defaultLongitude = locationResponse.longitude;
+                  $scope.pages = pageLikes.pages;
+                  displayMarkers();
+              });
           });
 
-      FB.api("me/likes?limit=100", getLikes);
-
-      var appElement = document.querySelector('[ng-app=eventNews]');
-      var $scope = angular.element(appElement).scope();
-      $scope.$apply(function() {
-          $scope.loggedIn = true;
-          defaultLatitude = locResponse.latitude;
-          defaultLongitude = locResponse.longitude;
-          $scope.pages = pageLikes.pages;
-          displayMarkers();
-      });  
+      FB.api("me/likes?limit=100", getLikes);  
     });
     FB.api('/me?fields=id,first_name,last_name,gender,location,hometown,email',function(response) {
       console.log('Successful login for: ' + response.name);
