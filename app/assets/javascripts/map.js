@@ -13,7 +13,9 @@ function initMap() {
       infoWindow.close();
   });
 
-  displayMarkers();
+  if(loggedIn == true) {
+    displayMarkers();
+  }
 }
 
 function displayMarkers() {

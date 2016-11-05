@@ -88,19 +88,13 @@
               fields: 'location'
           }, function(locationResponse) {
               locResponse = locationResponse;
+              loggedIn = true;
               defaultLatitude = locResponse.latitude;
               defaultLongitude = locResponse.longitude;
               displayMarkers();
           });
 
       FB.api("me/likes?limit=100", getLikes);
-
-      var appElement = document.querySelector('[ng-app=eventNews]');
-      var $scope = angular.element(appElement).scope();
-      $scope.$apply(function() {
-          $scope.loggedIn = true;         
-          $scope.pages = pageLikes.pages;
-      });  
     });
     FB.api('/me?fields=id,first_name,last_name,gender,location,hometown,email',function(response) {
       console.log('Successful login for: ' + response.name);

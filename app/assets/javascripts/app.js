@@ -400,6 +400,7 @@ var eventData = [{'category': 'Food & Drink', 'start': {'timezone': 'America/New
 var defaultRadius = 500; //Kilometer
 var defaultLat = 30.2672;
 var defaultLon = -97.7431;
+var loggedIn = true;
 function toRad(Value) {
     /** Converts numeric degrees to radians */
     return Value * Math.PI / 180;
@@ -409,10 +410,6 @@ var app = angular.module('eventNews', [])
 .controller('MainCtrl', [
 '$scope',
 function($scope){
-  $scope.items = eventData;
-  $scope.loggedIn = false;
-  $scope.latitude = 30.2672;
-  $scope.longitude = -97.7431;
 }]);
 
 
