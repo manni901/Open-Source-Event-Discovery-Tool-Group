@@ -22,3 +22,9 @@ Technical details:
 - Once user authenticates using the code in (app/assets/javascripts/fb.js), the appliction gets the user's location and a list of the pages liked by the user.
 - Based on the location, the map updates with only nearby events from the database. The maximum distance to show event upto can be controlled via a single variable (it is 100 Km at the moment). The mapping api can be found in (app/assets/javascripts/map.js). The common application code can be found in (app/assets/javascripts/app.js)
 - We have written an example data aggregator for the website Eventbrite in Python, to mine all event related data. This data is then matched with the pages the user has liked on facebook, thus serving only events relevant to the user's interests. Unfortunately due to less time we could not implement this part. We could not implement a proper database as well, and used json format data in (app/assets/javascripts/app.js).
+- Once the event data is filtered both by user's interests and the location, a facebook notification will be sent to the user with the words "You have {some_number} of interesting events coming up near you. Go check'em out!" We feel this is a huge improvement to actually feeding events directly to the user's calendar which might spam the user.
+
+Improvements:
+- One member in our team could scrape an api like Eventbrite's in such a short duration. A team of 5 developers scraping one api per day could add support for about 150 event publishing websites within 6 weeks.
+- The app is not supported by an ssl key, and thus if you try to navigate by clicking on the notifications sent to the user's facebook profile, it will end up on an empty page.
+- 
