@@ -1,28 +1,24 @@
-== README
+Contributors: Prashant Mishra, Yash Sinha, Satya Karthik.
+Please read this before going through the project.
+The application can be found online to test at https://event-miner.herokuapp.com. But to use it you would need to tell us your facebook Id, as the app is still unpublished and can be used only through facebook ids authorized by us.
+The problem we are trying to solve is serving information about local users to the end user.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+There are some potential problems:
+1. We don't want the user to install a separate web app for this. We want to engage them through existing portals.
+2. We don't to flood the user's calendar with event listings.
+3. The event publishers must have a common platform where they can notify relevant users through a single application.
 
-Things you may want to cover:
+Enter Event-miner, a facebook based web tool for both event-goers and event publishers. Following a brief description of the code in this repository:
+- Module One: Event Aggregator
+- Module Two: Facebook application and authentication
+- Module Three: Event filtering based on user's location and interests as obtained from Facebook profile.
+- Module Four: Facebook notification generator to inform and remind users of upcoming interesting events.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Technical details:
+- This is ruby on rails application, hosted on heroku.
+- The Facebook application has been developed using JAVA SDK.
+- The application has only one html view (file app/views/welcome/index.html.erb)
+- The html view loads a facebook authentication button and a map to show local event locations. Initially the map is empty.
+- Once user authenticates using the code in (app/assets/javascripts/fb.js), the appliction gets the user's location and a list of the pages liked by the user.
+- Based on the location, the map updates with only nearby events from the database. The maximum distance to show event upto can be controlled via a single variable (it is 100 Km at the moment). The mapping api can be found in (app/assets/javascripts/map.js). The common application code can be found in (app/assets/javascripts/app.js)
+- We have written an example data aggregator for the website Eventbrite in Python, to mine all event related data. This data is then matched with the pages the user has liked on facebook, thus serving only events relevant to the user's interests. Unfortunately due to less time we could not implement this part. We could not implement a proper database as well, and used json format data in (app/assets/javascripts/app.js).
