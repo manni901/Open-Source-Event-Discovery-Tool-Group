@@ -16,6 +16,6 @@
 //= require turbolinks
 //= require angular.min
 //= require app
-//= require fb
 //= require map
+//= require fb
 //= require_self
