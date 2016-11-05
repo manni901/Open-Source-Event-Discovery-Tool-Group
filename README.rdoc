@@ -16,7 +16,7 @@ Enter Event-miner, a facebook based web tool for both event-goers and event publ
 
 Technical details:
 - This is ruby on rails application, hosted on heroku.
-- The Facebook application has been developed using JAVA SDK.
+- The Facebook application has been developed using Javascript SDK.
 - The application has only one html view (file app/views/welcome/index.html.erb)
 - The html view loads a facebook authentication button and a map to show local event locations. Initially the map is empty.
 - Once user authenticates using the code in (app/assets/javascripts/fb.js), the appliction gets the user's location and a list of the pages liked by the user.
