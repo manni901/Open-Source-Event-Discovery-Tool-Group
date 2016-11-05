@@ -16,10 +16,13 @@
 	        	<div class="panel panel-primary" style="border-radius:4px;border-width:4px">
 		        	<div class="panel-title" style="background-color: #051838;color:white;padding:2px 6px">{{item.category}}</div>
 		            <div class="panel-body">
-				    	<p>Name: {{item.name}}</p>
-				    	<p><a href="{{item.url}}" target="_blank">Link</a></p>
-				    	<p>Venue: {{item.venue.name}}</p>
-				    	<p>Date: {{item.start.utc}}</p>
+				    	<p><b>Name:</b> {{item.name}}</p>
+				    	<p><b>Venue:</b> {{item.venue.name}}, {{item.venue.address.localized_address_display}}</p>
+				    	<p><b>Date:</b> {{item.start.utc}}</p>
+				    	<p>
+				    		<a href="{{item.url}}" target="_blank">Web Link</a> |
+				    		<a href="https://www.google.com/maps?q={{item.venue.latitude}},{{item.venue.longitude}}" target="_blank">Map Location</a>
+				    	</p>
 			    	</div>
 			    </div>
 	        </div>

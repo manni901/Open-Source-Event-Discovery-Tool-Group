@@ -402,5 +402,5 @@ var app = angular.module('eventNews', [])
 '$scope',
 function($scope){
   $scope.items = eventData;
-  $scope.loggedIn = false;
+  $scope.loggedIn = true;
 }]);
