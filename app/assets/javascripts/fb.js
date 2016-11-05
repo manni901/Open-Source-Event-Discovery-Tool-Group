@@ -122,6 +122,18 @@
            access_token: '105719696577356|79c6db8c9fb0bc8c93c9b6b58ffb7ead',
            template: 'You have ' + numNotifications + ' events waiting to be reviewed',
            href: 'google.com'        
-       });
+       }, 
+       function(response)
+       {
+          if (!response || response.error)
+          {
+             alert(response.error.message);
+          } 
+          else 
+          {
+             alert('Success :D');
+          }
+       }
+    );
   });
-}
+  }
