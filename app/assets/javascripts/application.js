@@ -17,4 +17,5 @@
 //= require angular.min
 //= require app
 //= require fb
+//= require map
 //= require_self

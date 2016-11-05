@@ -78,30 +78,32 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      console.log(response);
+
+  FB.api('/me?fields=id,first_name,last_name,gender,location,hometown,email', function(response) {
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      var location =response.location;
+      var locResponse;
+      FB.api('/' + location.id, {
+              fields: 'location'
+          }, function(locationResponse) {
+              locResponse = locationResponse;
+          });
+
+      FB.api("me/likes?limit=100", getLikes);
 
       var appElement = document.querySelector('[ng-app=eventNews]');
       var $scope = angular.element(appElement).scope();
       $scope.$apply(function() {
           $scope.loggedIn = true;
+          defaultLatitude = locResponse.latitude;
+          defaultLongitude = locResponse.longitude;
+          $scope.pages = pageLikes.pages;
+          displayMarkers();
       });  
     });
-    /* make the API call */
-    FB.api("me/likes?limit=100", getLikes);
-  // FB.api(
-  //   "/me/likes?limit=100",
-  //   function (response) {
-  //     if (response && !response.error) {
-  //       /* handle the result */
-  //     }
-  //     console.log(response);
-  //   });
-    // /* make the API call */
-    // FB.api('/me', {fields: 'gender, first_name, last_name, email, likes'}, function(response) {
-    // console.log(response.likes[0]);
-    // });
+    FB.api('/me?fields=id,first_name,last_name,gender,location,hometown,email',function(response) {
+      console.log('Successful login for: ' + response.name);
+      console.log(response);
+    });
   }
