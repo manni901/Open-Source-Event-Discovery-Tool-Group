@@ -1,5 +1,5 @@
 import requests, json
-accessToken = "K7XY42IJBLIZRO5Z6D5M"
+accessToken = ""
 def getResponse(request):
     return requests.get(
         request,
