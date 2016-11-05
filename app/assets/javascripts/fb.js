@@ -59,21 +59,31 @@
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-  var pageLikes = {
+
+   var pageLikes = {
     pages: []
   };
   function getLikes(response){
-   if (response.paging.next != "undefined"){
+   if (response.paging && response.paging.next){
        FB.api(response.paging.next, getLikes);
-       for(var i in response.data) {    
-        var item = response.data[i];   
-        pageLikes.pages.push({ 
+       for (var i = 0; i < response.data.length; i++) {
+            //add all posts to the items array
+            pageLikes.pages.push({ 
           "name" : response.data[i].name,
-        });
+         });
+        }
       }  
+      else{
+        callback_likes();
+      }
+      // console.log(pageLikes.pages);
+      // return pageLikes.pages;
     }
-    console.log(pageLikes.pages);
-  }
+  
+    function callback_likes(){
+      console.log(pageLikes.pages);
+    }
+
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
@@ -92,6 +102,7 @@
               defaultLat = locResponse.location.latitude;
               defaultLon = locResponse.location.longitude;
               displayMarkers();
+              sendNotification(markers.length);
           });
 
       FB.api("me/likes?limit=100", getLikes);
@@ -101,3 +112,16 @@
       console.log(response);
     });
   }
+
+  function sendNotification(numNotifications){
+    FB.api('/me', function(response) {
+    var req ="/"+response.id+"/notifications";
+    FB.api(req, 
+       'post', 
+       {
+           access_token: '105719696577356|79c6db8c9fb0bc8c93c9b6b58ffb7ead',
+           template: 'You have ' + numNotifications + ' events waiting to be reviewed',
+           href: 'google.com'        
+       });
+  });
+}
