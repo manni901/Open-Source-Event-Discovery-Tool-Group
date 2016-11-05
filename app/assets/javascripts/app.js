@@ -397,9 +397,10 @@ var eventData = [{'category': 'Food & Drink', 'start': {'timezone': 'America/New
 ,{'category': 'Religion & Spirituality', 'start': {'timezone': 'America/Los_Angeles', 'local': '2016-11-04T15:30:00', 'utc': '2016-11-04T22:30:00Z'}, 'venue_id': '8977279', 'end': {'timezone': 'America/Los_Angeles', 'local': '2016-11-05T15:00:00', 'utc': '2016-11-05T22:00:00Z'}, 'name': 'TWO MINUTE WARNING, Men\u2019s Meeting 2016', 'url': 'https://www.eventbrite.com/e/two-minute-warning-mens-meeting-2016-tickets-19387427317?aff=ebapi', 'category_id': '114', 'venue': {'name': 'Faith Baptist Tabernacle', 'longitude': '-121.384953', 'address': {'city': 'North Highlands', 'country': 'US', 'region': 'CA', 'longitude': '-121.384953', 'localized_address_display': '3501 Q St, North Highlands, CA 95660', 'postal_code': '95660', 'address_1': '3501 Q St', 'address_2': 'none', 'latitude': '38.697958', 'localized_multi_line_address_display': ['3501 Q St', 'North Highlands, CA 95660'], 'localized_area_display': 'North Highlands, CA'}, 'latitude': '38.697958', 'id': '8977279', 'resource_uri': 'https://www.eventbriteapi.com/v3/venues/8977279/'}, 'id': '19387427317'}];
 
 
-angular.module('eventNews', [])
+var app = angular.module('eventNews', [])
 .controller('MainCtrl', [
 '$scope',
 function($scope){
   $scope.items = eventData;
+  $scope.loggedIn = false;
 }]);

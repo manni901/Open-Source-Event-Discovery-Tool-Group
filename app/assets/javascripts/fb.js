@@ -75,5 +75,11 @@
       console.log(response);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '! Here are some local events around you, based on your interests. Enjoy!';
+
+      var appElement = document.querySelector('[ng-app=eventNews]');
+      var $scope = angular.element(appElement).scope();
+      $scope.$apply(function() {
+          $scope.loggedIn = true;
+      });  
     });
   }

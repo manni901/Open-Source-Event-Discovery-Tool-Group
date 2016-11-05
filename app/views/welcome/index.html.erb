@@ -6,8 +6,9 @@
 <div id="status">
 </div>
 
-<h3>Events</h3>
-<div ng-app="eventNews" ng-controller="MainCtrl">
+
+<div id ="eventList" ng-app="eventNews" ng-controller="MainCtrl" ng-show="loggedIn">
+	<h3>Events</h3>
 	<div class="row">
 	    <div ng-repeat="item in items">
 	        <div class="clearfix" ng-if="$index % 3 == 0"></div>
